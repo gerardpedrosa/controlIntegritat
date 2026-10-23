@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Menu {
 
     Scanner sc = new Scanner(System.in);
+    Resums resums = new Resums(sc);
 
     public static void main(String[] args) {
         Menu menu = new Menu();
@@ -89,19 +90,19 @@ public class Menu {
             switch (opcio) {
 
                 case 1:
-                    calcularHash();
+                    resums.calcularHash();
                     break;
 
                 case 2:
-                    compararDosMissatges();
+                    resums.compararDosMissatges();
                     break;
 
                 case 3:
-                    modificarMissatge();
+                    resums.modificarMissatge();
                     break;
 
                 case 4:
-                    repetirHash();
+                    resums.repetirHash();
                     break;
 
                 case 0:
@@ -201,23 +202,6 @@ public class Menu {
         } while (opcio != 0);
 
     }
-
-    public void calcularHash() {
-        //
-    }
-
-    public void compararDosMissatges() {
-        //
-    }
-
-    public void modificarMissatge() {
-        //
-    }
-
-    public void repetirHash() {
-        //
-    }
-
 
     public void verificarIntegritat() {
         //

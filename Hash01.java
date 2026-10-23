@@ -20,16 +20,16 @@ public class Hash01 {
             textIn = sc.nextLine();
         }
 
-        // Convertim l'string a un array de bytes
+        // string a un array de bytes
         byte[] bytesIn = textIn.getBytes(StandardCharsets.UTF_8);
 
-        // Instanciem la classe per fer el hash
+        // classe hash
         MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
 
-        // Calculem el hash
+        // calcular hash
         byte[] hashResult = sha256.digest(bytesIn);
 
-        // Convertim el hash a hexadecimal per mostrar-lo
+        //  hash a hexadecimal 
         String textOut = HexFormat.of().withUpperCase()
                 .formatHex(hashResult);
 
@@ -73,7 +73,7 @@ public class Hash01 {
         }
     }
 
-    // Per mostrar la salt en hexadecimal
+    // mostrar la salt en hexadecimal
     public static String saltAHex(byte[] salt) {
         return HexFormat.of().withUpperCase().formatHex(salt);
     }
