@@ -8,6 +8,59 @@ public class Resums {
         this.sc = sc;
     }
 
+    public void menu() {
+
+        int opcio;
+
+        do {
+
+            System.out.println();
+            System.out.println("--- CALCUL DE RESUMS (SHA-256) ---");
+            System.out.println("1. Calcular el hash d'un missatge");
+            System.out.println("2. Comparar els hashes de dos missatges");
+            System.out.println("3. Modificar un missatge i tornar a calcular el hash");
+            System.out.println("4. Repetir el hash d'un mateix missatge");
+            System.out.println("0. Tornar enrere");
+            System.out.print("Opcio: ");
+
+            String entrada = sc.nextLine();
+
+            try {
+                opcio = Integer.parseInt(entrada);
+            } catch (NumberFormatException e) {
+                opcio = -1;
+            }
+
+            switch (opcio) {
+
+                case 1:
+                    calcularHash();
+                    break;
+
+                case 2:
+                    compararDosMissatges();
+                    break;
+
+                case 3:
+                    modificarMissatge();
+                    break;
+
+                case 4:
+                    repetirHash();
+                    break;
+
+                case 0:
+                    break;
+
+                default:
+                    System.out.println("Opcio incorrecta.");
+                    break;
+            }
+
+        } while (opcio != 0);
+
+    }
+
     public void calcularHash() {
         System.out.print("Entra el missatge: ");
         String missatge = sc.nextLine();
@@ -38,12 +91,11 @@ public class Resums {
         String original = sc.nextLine();
         System.out.println("Hash original:  " + Hash01.sha256(original));
 
-        System.out.print("Missatge modificat (canvia una sola lletra): ");
+        System.out.print("Missatge modificat: ");
         String modificat = sc.nextLine();
         System.out.println("Hash modificat: " + Hash01.sha256(modificat));
     }
 
-    // Calcular diverses vegades el hash d'un mateix missatge
     public void repetirHash() {
         System.out.print("Entra el missatge: ");
         String missatge = sc.nextLine();
@@ -62,7 +114,7 @@ public class Resums {
         if (iguals) {
             System.out.println("El resultat es mante sempre igual.");
         } else {
-            System.out.println("El resultat ha canviat (no hauria de passar).");
+            System.out.println("El resultat ha canviat.");
         }
     }
 }
