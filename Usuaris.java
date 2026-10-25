@@ -83,5 +83,26 @@ public class Usuaris {
     }
 
     public void iniciarSessio() {
+        
+        System.out.print("Nom d'usuari: ");
+        String nom = sc.nextLine();
+
+        System.out.print("Contrasenya: ");
+        String contrasenya = sc.nextLine();
+
+        Usuari u = usuaris.get(nom);
+
+        if (u == null) {
+            System.out.println("Usuari o contrasenya incorrectes.");
+            return;
+        }
+
+        String hashCalculat = Hash01.hashAmbSalt(contrasenya, u.salt);
+
+        if (hashCalculat.equals(u.hash)) {
+            System.out.println("Acces concedit. Benvingut, " + nom + "!");
+        } else {
+            System.out.println("Usuari o contrasenya incorrectes.");
+        }
     }
 }
