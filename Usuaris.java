@@ -1,8 +1,10 @@
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class Usuaris {
 
     Scanner sc;
+    HashMap<String, Usuari> usuaris = new HashMap<>();
 
     public Usuaris(Scanner sc) {
         this.sc = sc;
@@ -51,7 +53,33 @@ public class Usuaris {
 
     }
 
+    
     public void registrar() {
+        
+        System.out.print("Nom d'usuari: ");
+        String nom = sc.nextLine();
+
+        if (nom.isEmpty()) {
+            System.out.println("El nom no pot estar buit.");
+            return;
+        }
+
+        if (usuaris.containsKey(nom)) {
+            System.out.println("Aquest usuari ja existeix.");
+            return;
+        }
+
+        System.out.print("Contrasenya: ");
+        String contrasenya = sc.nextLine();
+
+        byte[] salt = Hash01.generarSalt();
+        String hash = Hash01.hashAmbSalt(contrasenya, salt);
+
+        usuaris.put(nom, new Usuari(nom, salt, hash));
+
+        System.out.println("Usuari registrat correctament.");
+        System.out.println("Salt: " + Hash01.saltAHex(salt));
+        System.out.println("Hash: " + hash);
     }
 
     public void iniciarSessio() {
